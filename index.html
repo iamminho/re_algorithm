@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>  
+        <script>
+            async function getData() {
+                const a = [ 1, 2, 3 ]
+                const b = a.map(function (v, i, arr) {
+                    console.log(v, i, arr, this)
+                    return this[0] + v
+                }, [ 10 ])
+                console.log(b);
+            }     
+           getData();                    
+        </script>
+    </body>
+</html>
