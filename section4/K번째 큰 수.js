@@ -17,16 +17,16 @@ console.log(stack2);
 
 //-------------------------------------------------------
 // <답안>
-// let n = arr.length;
-// let answer;
-// let tmp = new Set();
-// for(let i=0; i<n; i++){
-//     for(let j=i+1; j<n; j++){
-//         for(let k=j+1; k<n; k++){
-//             tmp.add(card[i]+card[j]+card[k]); // Set에 넣어줄때는 add를 쓴다.
-//         }
-//     }
-// }
-// let a=Array.from(tmp).sort((a, b)=>b-a); //set은 sort를 쓸 수 없으므로 배열로 만들어준뒤에 정렬한다.
-// answer=a[k-1];
-// console.log(answer);
+let n = arr.length;
+let answer;
+let tmp = new Set();
+for(let i=0; i<n; i++){
+    for(let j=i+1; j<n; j++){
+        for(let k=j+1; k<n; k++){
+            tmp.add(card[i]+card[j]+card[k]); // Set에 넣어줄때는 add를 쓴다.
+        }
+    }
+}
+let a=Array.from(tmp).sort((a, b)=>b-a); //set은 sort를 쓸 수 없으므로 배열로 만들어준뒤에 정렬한다.
+answer=a[k-1];
+console.log(answer);
