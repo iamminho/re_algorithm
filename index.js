@@ -1,19 +1,23 @@
-let N = 15,
-  arr = "BACBACCACCBDEDE",
-  answer;
-let score = [0, 0, 0, 0, 0, 0];
-for (let i = 0; i < arr.length; i++) {
-  let num = arr.charCodeAt(i);
-  score[num - 64] += 1;
-}
-let maxValue = 0;
-let maxNum = 0;
-for (let j = 1; j < score.length; j++) {
-  if (maxValue < score[j]) {
-    maxValue = score[j];
-    maxNum = j;
+let str1 = "AAABBBCCC";
+let str2 = "CCCBBBAAA";
+let answer = "true";
+//각각의 str의 map을 구해놓고 비교한다.
+
+function solution(str) {
+  let map = new Map();
+  for (let x of str) {
+    if (map.has(x)) map.set(x, map.get(x) + 1);
+    else map.set(x, 1);
   }
+  return map;
 }
-console.log(maxNum);
-answer = String.fromCharCode(maxNum + 64);
+
+let sh1 = solution(str1);
+let sh2 = solution(str2);
+console.log(sh1);
+console.log(sh2);
+
+for (let s of str1) {
+  if (sh1.get(s) !== sh2.get(s)) answer = "false";
+}
 console.log(answer);
