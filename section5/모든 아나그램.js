@@ -2,8 +2,8 @@
 let str1 = "bacaAacba";
 let str2 = "abc";
 
-let tH = new Map();
 let sH = new Map();
+let tH = new Map();
 let answer = 0;
 let lt = 0;
 
