@@ -5,24 +5,26 @@
 //----------------------------------------------
 
 // loop를 통해 괄호들을 받는다.
-//    stack에 "("를 쌓는다.
-//    ")"이 나올때 마다 stack의 "("를 제거해준다.
+//    "("일때: stack에 "("를 쌓는다.
+//    ")"일때:
+//    		")"이 나올때 마다 stack의 "("를 제거해준다.
+//         만약 stack안에 아무것도 없다면 "NO"를 리턴해준다.
 // loop가 끝난 후에 stack에 "("가 남아있으면 "NO", 남아있지 않으면 "YES"
 
-// let input = "))(";
-// let stack = [];
-// for (let x of input) {
-//   if (x === "(") stack.push(x);
-//   else {
-//     if (stack.length === 0) {
-//       stack.push(x);
-//       break;
-//     } else stack.pop();
-//   }
-//   console.log(stack);
-// }
-// if (stack.length > 0) console.log("NO");
-// else console.log("YES");
+let input = "))(";
+let stack = [];
+for (let x of input) {
+  if (x === "(") stack.push(x);
+  else {
+    if (stack.length === 0) {
+      stack.push(x);
+      break;
+    } else stack.pop();
+  }
+  console.log(stack);
+}
+if (stack.length > 0) console.log("NO");
+else console.log("YES");
 // --------------------------------------------
 
 // <refactoring>
