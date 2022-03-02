@@ -44,13 +44,7 @@ for (let y of b) {
     if (stack.length > 0 && stack[stack.length - 1] === a[c[x]][x]) {
       stack.pop();
       answer += 2;
-      // c[x]++;
-      // if (c[x] === 5) c[x] = -1;
-    } else {
-      stack.push(a[c[x]][x]);
-      // c[x] += 1;
-      // if (c[x] === 5) c[x] = -1;
-    }
+    } else stack.push(a[c[x]][x]);
     c[x]++;
     if (c[x] === 5) c[x] = -1;
     console.log("stack:", stack, "c:", c);
@@ -60,13 +54,7 @@ for (let y of b) {
         if (stack.length > 0 && stack[stack.length - 1] === a[i][x]) {
           stack.pop();
           answer += 2;
-          // c[x] = i + 1;
-          // if (c[x] === 5) c[x] = -1;
-        } else {
-          stack.push(a[i][x]);
-          // c[x] = i + 1;
-          // if (c[x] === 5) c[x] = -1;
-        }
+        } else stack.push(a[i][x]);
         c[x] = i + 1;
         if (c[x] === 5) c[x] = -1;
         console.log("i:", i, "stack:", stack, "c:", c);
