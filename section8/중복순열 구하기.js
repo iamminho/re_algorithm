@@ -23,7 +23,7 @@ let pt = [5, 12, 8, 3, 4];
 let answer = Number.MIN_SAFE_INTEGER;
 function dfs(L, sum, time) {
   if (time > M) return;
-  if (L === 5) answer = Math.max(answer, sum);
+  if (L === N) answer = Math.max(answer, sum);
   else {
     dfs(L + 1, sum + ps[L], time + pt[L]);
     dfs(L + 1, sum, time);
