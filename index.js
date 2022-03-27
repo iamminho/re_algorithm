@@ -1,31 +1,15 @@
-// 문제이해하기
-// N에 대한 팩토리얼 구하기
-// 5 * 4 * 3 * 2 * 1
+// nCr = n-1Cr-1 + n-1Cr
+//
 
-// 문제해결전략
-// dfs(N, sum)
-// 만약 N이 0이 될때
-//  return
-// 만약 N이 0이 아니면
-//  dfs(N-1, sum*N)
-
-// function dfs(N, sum) {
-//   if (N === 0) {
-//     console.log(sum);
-//   } else {
-//     dfs(N - 1, sum * N);
-//   }
-// }
-// dfs(8, 1);
-
-// 문제해결전략
-// 5* dfs(4) -> 4*dfs(3) -> 3*dfs(2) -> 2*dfs(1) -> 1
-// 결국 5 * 4 * 3 * 2 * 1이된다.
-
-let n = 5;
-function dfs(n) {
-  if (n === 1) return 1;
-  else return n * dfs(n - 1);
+function solution(n, r) {
+  let answer = [];
+  let dy = Array.from(Array(n + 1), () => Array(r + 1).fill(0));
+  function DFS(n, r) {
+    if (dy[n][r] > 0) return dy[n][r];
+    if (n === r || r === 0) return 1;
+    else return (dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
+  }
+  answer = DFS(n, r);
+  return answer;
 }
-answer = dfs(n);
-console.log(answer);
+console.log(solution(33, 19));
