@@ -28,7 +28,7 @@ function solution(n, arr) {
   for (let [a, b] of arr) {
     graph[a][b] = 1;
   }
-
+  console.log(graph);
   function dfs(L) {
     if (L === 5) {
       answer++;
