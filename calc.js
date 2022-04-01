@@ -1,4 +1,3 @@
-let sum = 0;
-let answer = -1;
-sum = sum + answer;
-console.log(sum);
+let word = "hoy";
+let wordArr = Array.from(word);
+console.log(wordArr);
