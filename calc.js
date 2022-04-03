@@ -1,3 +1,3 @@
-let word = "hoy";
-let wordArr = Array.from(word);
-console.log(wordArr);
+let i = 11;
+let a = 8;
+console.log(i % a);
