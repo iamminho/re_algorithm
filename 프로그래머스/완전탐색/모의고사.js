@@ -66,3 +66,4 @@ console.log(solution(answers));
 //    ex) a1.length가 5이고, answers.length가 7이면
 //          a1[4]를 비교한 후, a1은 다시 a1[0]으로 돌아가야 한다.
 //          i=4일때  i%a1.length=0이 되므로 a1[0]부터 다시 비교할 수 있다.           
+
