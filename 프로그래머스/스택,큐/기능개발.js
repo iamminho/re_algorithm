@@ -9,30 +9,45 @@
 // 완료된 작업들은 progeresses에서 제거한다.
 
 function solution(progresses, speeds) {
-    let answer = [];
-    while(progresses.length>0) {
-        console.log("pro1", progresses);
-        let stack = [];
-        while (progresses[0] < 100) {
-            progresses.map((p, i) => (progresses[i] = p + speeds[i]));
-            console.log(progresses);
-          }
-        console.log("pro2",progresses);
-        for(let i=0; i<progresses.length; i++){
-            if(progresses[i] >= 100) stack.push(progresses[i]);
-            else break;
+    let answer = [0];
+    let days = progresses.map((progress, index) => Math.ceil((100 - progress) / speeds[index]));
+    console.log(days);
+    let maxDay = days[0];
+
+    for(let i = 0, j = 0; i< days.length; i++){
+        if(days[i] <= maxDay) {
+            answer[j] += 1;
+        } else {
+            maxDay = days[i];
+            answer[++j] = 1;
         }
-        console.log("stack:", stack);
-        progresses = progresses.splice(stack.length);
-        speeds = speeds.splice(stack.length);
-        answer.push(stack.length);
     }
+
     return answer;
 }
+
 let progresses = [95,95,95,95];
 let speeds = [4,3,2,1];
 console.log(solution(progresses, speeds));
 
-
+// function solution(progresses, speeds) {
+//     let answer = [];
+//     while(progresses.length>0) {
+//         let stack = [];
+//         //개발
+//         while (progresses[0] < 100) {
+//             progresses.map((p, i) => (progresses[i] = p + speeds[i]));           
+//           }
+//         //배포
+//         for(let i=0; i<progresses.length; i++){
+//             if(progresses[i] >= 100) stack.push(progresses[i]);
+//             else break;
+//         }
+//         progresses = progresses.splice(stack.length);
+//         speeds = speeds.splice(stack.length);
+//         answer.push(stack.length);
+//     }
+//     return answer;
+// }
       
       
