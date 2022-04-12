@@ -18,47 +18,50 @@ function solution(s) {
   let answer = Number.MAX_SAFE_INTEGER;
   let length = Math.ceil(s.length/2);
   for(let n = 1; n<= length; n++){
+      console.log("--------------");
       console.log("n",n);
       let string = strAdd(n);
-      console.log("string:", string);
-      let tmp = ["",""];
-      let res = 0;
-      let repeat = 0;
-      for(let j = 0; j<string.length; j++){
-        if(string[j] === tmp[1] && string[j] === tmp[0]){
-          if(repeat === 10 || repeat === 100 || repeat === 1000){
-            res +=1;
-            repeat +=1;
-          }
-          else if(repeat >= 3){
-            repeat ++;
-          }else {
-            repeat = 3;
-          }                    
+      console.log(string);
+      let stack = [string[0]];
+      let number = [];
+      let repeat = 1;
+      for(let j = 1; j<string.length; j++){
+        if(stack[stack.length-1] === string[j]){
+          repeat +=1;          
         }
-        else if(string[j] === tmp[1] && string[j] !== tmp[0]){
-          tmp[0] = tmp[1];
-          tmp[1] = string[j];
-          res += 1;
-          repeat = 0;
+        else if(stack[stack.length] !== string[j]){
+          if(repeat>1){
+            number.push(String(repeat));
+            stack.push(string[j]);
+            repeat = 1;
+          }else{
+            stack.push(string[j]);
+          }          
         }
-        else if(string[j] !== tmp[1]){
-          tmp[0] = tmp[1];
-          tmp[1] = string[j];
-          res += string[j].length;
-          repeat = 0;
-        }
-        console.log("-------------")
-        console.log("repeat:",repeat);
-        console.log("stirng", string[j])
-        console.log("tmp:", tmp);
-        console.log("res",res);
+        console.log("--------------");
+        console.log("j", j);
+        console.log("stack",stack);
+        console.log("number",number);
+        console.log("repeat",repeat);
       }
-      answer = Math.min(answer, res);
+      if(repeat>=2) number.push(String(repeat));
+      console.log("결과")
+      console.log("stack:",stack,"number",number);
+      let strLen = 0;
+      let numLen = 0;
+      for(let s=0; s<stack.length; s++) {
+        strLen += stack[s].length;
+      }
+      for(let n=0; n<number.length; n++){
+        numLen += number[n].length;
+      }
+      let res = strLen + numLen;
+      console.log("res",res);
+      answer = Math.min(answer, strLen + numLen);
       console.log("answer:",answer);
   }
   return answer;
 }
 
-let s = "aabbaccc";
+let s = "aaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbb";
 console.log(solution(s));
