@@ -8,32 +8,25 @@ function solution(maps) {
     let n = maps.length;
     let m = maps[0].length;
     let ch = Array.from(Array(n), () => Array(m).fill(0));
-    let queue = [];    
-    queue.push([0,0]);
+    let queue = [[0,0]];        
     ch[0][0] = 1;
     let L = 1;
-    while(queue.length) {
-        // console.log("queue:",queue);
+    while(queue.length) {        
         let len = queue.length;
         for(let i=0; i<len; i++){
-            let ele = queue.shift();
-            // console.log("ele:",ele);
+            let ele = queue.shift();            
             for(let k=0; k<x.length; k++){
                 let X = ele[0]+x[k];
                 let Y = ele[1]+y[k];                
                 if(X === n-1 && Y === m-1) return L+1;
-                if(X>=0 && X<n && Y>=0 && Y<m && ch[X][Y] === 0 && maps[X][Y] === 1){
-                    // console.log("X",X,"Y",Y);
-                    ch[X][Y] = 1;
-                    // console.log("ch",ch);
+                if(X>=0 && X<n && Y>=0 && Y<m && ch[X][Y] === 0 && maps[X][Y] === 1){                    
+                    ch[X][Y] = 1;                    
                     queue.push([X,Y]);
-                    // console.log("InputQueue:",queue);
+                    
                 }
             }
         }
-        L++;
-        // console.log("L",L);
-        // console.log("---------")
+        L++;    
     }    
     return -1
 }
