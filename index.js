@@ -1,92 +1,43 @@
-function solution(relation) {
-  let column = relation[0].length; //4
-  let row = relation.length; //6
-  let count = 0;
-  let bitMaskList = [];
-  for(let i = 1; i < (1 << column); ++i) {
-      console.log("---------------------");
-      console.log("i",i);
-      let keySet = new Set();
-      for(let j = 0; j < row; ++j) {
-          let key = "";
-          for(let k = 0; k < column; ++k) {
-              if((i & (1 << k)) != 0){
-                console.log("relation[j][k]",relation[j][k]);
-                key += relation[j][k];
-                console.log("key",key);
-              }
-          }
-          keySet.add(key);
-          console.log("keySet",keySet);
-      }
-      if(keySet.size == row && duplcateCheck(bitMaskList, i)) ++count;
-  }
-  return count;
+function solution(N, road, K) {
+  // 1.
+const dist = Array(N + 1).fill(Infinity);
+const adj = Array.from({ length: N + 1 }, () => []);
+console.log("dist",dist);
+console.log("adj", adj);
+  // 1-1.
+road.forEach(([a,b,c]) => {        
+    adj[a].push({ to: b, time: c }); 
+    adj[b].push({ to: a, time: c }); 
+});
+console.log("adj",adj);
+
+  // 2.
+const pq = [{ to: 1, time: 0 }];
+dist[1] = 0;
+
+  // 3.
+while(pq.length) {
+    let {to, time} = pq.pop();
+    
+      // 4.
+    adj[to].forEach(next => {
+      console.log("----------------------");
+      console.log("to",to,"time",time);
+        console.log("next",next);
+        console.log("dist[next.to]",dist[next.to]);
+        console.log("dist[to]",dist[to]);
+        console.log("next.time",next.time);
+        if(dist[next.to] > dist[to] + next.time) {
+            dist[next.to] = dist[to] + next.time;
+            pq.push(next);
+            console.log("pq",pq);
+        }
+        console.log("dist",dist);
+    })
 }
 
-let relation = [
-  ["100", "ryan", "music", "2"],
-  ["200", "apeach", "math", "2"],
-  ["300", "tube", "computer", "3"],
-  ["400", "con", "computer", "4"],
-  ["500", "muzi", "music", "3"],
-  ["600", "apeach", "music", "2"],
-];
-console.log(solution(relation));
-
-
-
-// function duplcateCheck(list, key) {
-//   let size = list.length;
-//   for(let i=0; i<size; ++i) {
-//       if((list[i] & key) == list[i]) return false;
-//   }
-//   list.push(key);
-//   return true;
-// }
-
-// const combine = (array, r) => {
-//   const n = array.length;
-//   console.log("inConbine");
-//   console.log("n",n);
-//   if (n === 0 || r === 0) return [""];
-//   if (n === r) return [array.join("")];
-//   const next = array.slice(1);
-//   return [
-//     ...combine(next, r - 1).map((v) => `${array[0]}` + v),
-//     ...combine(next, r),
-//   ];
-// };
-
-// const isEqual = (a, b) =>
-//   a.length === b.length && a.every((v, i) => v === b[i]);
-
-// function solution(relation) {
-//   const columnLength = relation[0].length,    
-//     columnIndexes = Array(columnLength)
-//       .fill(0)
-//       .map((_, i) => i);
-//     console.log("columnLength",columnLength);
-//     console.log("columnIndexes",columnIndexes);
-    
-//   let columnSet = [];
-//   for (let i = columnLength; i > 0; i--)
-//     columnSet.push(...combine(columnIndexes, i));
-//     console.log("columnSet",columnSet);
-
-//   let answer = 0,
-//     s;
-//   while (columnSet.length > 0) {
-//     s = columnSet.pop().split("");
-//     if (
-//       relation
-//         .map((v) => s.map((i) => v[i]))
-//         .some((v, i, a) => i !== a.findIndex((_v) => isEqual(_v, v)))
-//     )
-//       continue;
-//     answer++;
-//     for (let i = 0; i < columnSet.length; i++)
-//       if (s.every((v) => columnSet[i].includes(v))) columnSet.splice(i--, 1);
-//   }
-//   return answer;
-// }
+  // 5.
+return dist.filter((item) => item <= K ).length;
+}
+let N = 6,	road = [[1,2,1],[1,3,2],[2,3,2],[3,4,3],[3,5,2],[3,5,3],[5,6,1]],	K=4
+console.log(solution(N, road, K));
