@@ -39,3 +39,26 @@ function solution(people, limit) {
   }
   return answer;
 }
+
+// 투포인터 활용 시간초과
+function solution(people, limit) {
+  var answer = 0;
+  people = people.sort((a, b) => a - b);
+  let ch = Array.from({ length: people.length }, () => 0);
+  // console.log("people",people);
+  for (let i = 0; i < people.length; i++) {
+    if (ch[i] === 0) {
+      // console.log("i",i);
+      for (let p = people.length - 1; p > i; p--) {
+        if (ch[p] === 0 && people[i] + people[p] <= limit) {
+          ch[p] = 1;
+          break;
+        }
+      }
+      answer++;
+      // console.log("ch",ch);
+      // console.log("answer",answer);
+    }
+  }
+  return answer;
+}
