@@ -1,6 +1,5 @@
 function solution(arr) {
   arr.sort((a, b) => a - b);
-  console.log(arr);
   let count = 1;
   let answer = [];
   for (let i = 0; i < arr.length - 1; i++) {
@@ -15,5 +14,5 @@ function solution(arr) {
   console.log(answer);
 }
 
-let arr = [3, 5, 6, 7, 1];
+let arr = [3, 5, 7, 9, 1];
 console.log(solution(arr));
