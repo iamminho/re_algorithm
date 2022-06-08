@@ -51,3 +51,4 @@ let vertex = [
   [5, 2],
 ];
 console.log(solution(6, vertex));
+
