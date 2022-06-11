@@ -28,8 +28,6 @@ function solution(n, times) {
     else if (count < n) left = mid + 1;
 
     mid = Math.floor((left + right) / 2);
-    console.log("left, right", left, right);
-    console.log("mid", mid);
   }
   return left;
 }
