@@ -21,16 +21,16 @@ function solution(n, costs) {
     return false;
   }
   costs.sort((a, b) => a[2] - b[2]);
-  console.log("costs", costs);
+  //console.log("costs", costs);
   let parent = [];
   let answer = 0;
   for (let i = 0; i < n; i++) parent.push(i);
-  console.log("parent", parent);
+  //console.log("parent", parent);
   for (const cost of costs) {
     if (!findParent(parent, cost[0], cost[1])) {
       answer += cost[2];
       unionParent(parent, cost[0], cost[1]);
-      console.log("parent", parent);
+      //console.log("parent", parent);
     }
   }
   return answer;
