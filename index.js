@@ -1,17 +1,38 @@
-function dfs(L, v, n, ch) {
-  if (L === n) {
-    console.log(ch);
-  } else {
-    for (let i = v; i < 11 - n + L; i++) {
-      ch[L] = i;
-      dfs(L + 1, i + 1, n, ch);
-    }
+// let a = () => {
+//   let c = 10;
+//   let b = () => {
+//     console.log(this);
+//   };
+// };
+
+// var a = {
+//   b: function () {
+//     console.log(this);
+//   },
+// };
+// a.b();
+
+// var callback = function () {
+//   console.dir(this);
+// };
+
+// var obj = {
+//   a: 1,
+//   // b: function (cb) {
+//   //   cb();
+//   // },
+// };
+// setTimeout(callback.bind(obj), 3000);
+
+{
+  let a = 10;
+  {
+    let a = 20;
+    //#1
+    console.log(a); //20
   }
+  //#2
+  console.log(a); //10
 }
-
-function solution(n) {
-  let ch = Array.from({ length: n }, () => 0);
-  dfs(0, 0, n, ch);
-}
-
-console.log(solution(3));
+//#3
+// console.log(a); //찾을 수 없음
