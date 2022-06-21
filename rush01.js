@@ -207,19 +207,19 @@ console.log(solution(n));
 //   return true;
 // }
 
-// function isCollect3(input, arr) {
-//   let cnt = 1;
-//   for (let i = 0; i < n; i++) {
-//     for (let j = n - 1; j > 0; j++) {
-//       if (arr[j][i] < arr[j - 1][i]) {
-//         cnt++;
-//       } else {
-//         break;
-//       }
-//     }
-//     if (cnt !== input[2][i]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
+function isCollect3(input, arr) {
+  let cnt = 1;
+  for (let i = 0; i < n; i++) {
+    for (let j = n - 1; j > 0; j++) {
+      if (arr[j][i] < arr[j - 1][i]) {
+        cnt++;
+      } else {
+        break;
+      }
+    }
+    if (cnt !== input[2][i]) {
+      return false;
+    }
+  }
+  return true;
+}
