@@ -1,38 +1,33 @@
-// let a = () => {
-//   let c = 10;
-//   let b = () => {
-//     console.log(this);
-//   };
-// };
-
-// var a = {
-//   b: function () {
-//     console.log(this);
-//   },
-// };
-// a.b();
-
-// var callback = function () {
-//   console.dir(this);
-// };
-
-// var obj = {
-//   a: 1,
-//   // b: function (cb) {
-//   //   cb();
-//   // },
-// };
-// setTimeout(callback.bind(obj), 3000);
-
-{
-  let a = 10;
-  {
-    let a = 20;
-    //#1
-    console.log(a); //20
+function solution(N, number) {
+  const use = Array.from(new Array(9), () => new Set());
+  console.log(use);
+  if (N === number) return 1;
+  else {
+    use.forEach((element, index) => {
+      if (index !== 0) element.add(Number(String(N).repeat(index)));
+    });
+    for (let i = 1; i <= 8; i++) {
+      console.log("*****************");
+      for (let j = 1; j < i; j++) {
+        console.log("----------");
+        for (let item1 of use[j]) {
+          for (let item2 of use[i - j]) {
+            use[i].add(item1 + item2);
+            use[i].add(item1 - item2);
+            use[i].add(item1 * item2);
+            use[i].add(Math.floor(item1 / item2));
+            console.log(use);
+          }
+        }
+      }
+      if (use[i].has(number)) {
+        return i;
+      }
+    }
+    return -1;
   }
-  //#2
-  console.log(a); //10
 }
-//#3
-// console.log(a); //찾을 수 없음
+
+const N = 5;
+const number = 12;
+console.log(solution(N, number));
