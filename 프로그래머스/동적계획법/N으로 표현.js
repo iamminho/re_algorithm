@@ -11,7 +11,8 @@ let solution = (N, number) => {
     console.log(s);
     if ([...s[i]].includes(number)) return i;
   }
+  return -1;
 };
-let N = 2;
-let number = 11;
+let N = 4;
+let number = 31;
 console.log(solution(N, number));
