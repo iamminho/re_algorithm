@@ -7,15 +7,12 @@ answers = []
 
 def check(sign, num1, num2):
     if sign == '<':
-        if num1 < num2:
-            return True
-        else:
+        if num1 > num2:
             return False
     else:
-        if num1 > num2:
-            return True
-        else:
+        if num1 < num2:
             return False
+    return True
 
 
 def getNumber(L):
@@ -23,12 +20,11 @@ def getNumber(L):
         answers.append(''.join(map(str, res)))
     else:
         for i in range(0, 10):
-            if ch[i] == True:
-                if L == 0 or check(arr[L-1], res[L-1], i):
-                    ch[i] = False
-                    res[L] = i
-                    getNumber(L+1)
-                    ch[i] = True
+            if ch[i] and (L == 0 or check(arr[L-1], res[L-1], i)):
+                ch[i] = False
+                res[L] = i
+                getNumber(L+1)
+                ch[i] = True
 
 
 getNumber(0)
